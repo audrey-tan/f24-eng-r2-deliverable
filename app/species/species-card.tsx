@@ -18,6 +18,7 @@ import AddCommentCard from "./add-comment-card";
 import CommentCard from "./comment-card";
 import DeleteSpeciesDialog from "./delete-species-dialog";
 import EditSpeciesDialog from "./edit-species-dialog";
+import { useState } from "react";
 
 interface Profile {
   display_name: string;
@@ -44,8 +45,14 @@ export default function SpeciesCard({
   sessionId: string;
   user_display_name: string;
 }) {
-  let isAuthor = false;
-  if (sessionId === species.author) isAuthor = true;
+
+  const [open, setOpen] = useState<boolean>(false);
+
+  const isAuthor = (sessionId === species.author);
+
+  const closeDialog = () => {
+    setOpen(false);
+  }
 
   return (
     <div className="m-4 w-72 min-w-72 flex-none rounded border-2 p-3 shadow">
@@ -58,7 +65,7 @@ export default function SpeciesCard({
       <h4 className="text-lg font-light italic">{species.common_name}</h4>
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
 
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="mt-3 w-full">Learn More</Button>
         </DialogTrigger>
@@ -66,7 +73,7 @@ export default function SpeciesCard({
           <div className="mt-5">
             {isAuthor ? (
               <div className="space-x-2">
-                <EditSpeciesDialog species={species} />
+                <EditSpeciesDialog species={species} onEdit={closeDialog}/>
                 <DeleteSpeciesDialog species={species} />
               </div>
             ) : null}
