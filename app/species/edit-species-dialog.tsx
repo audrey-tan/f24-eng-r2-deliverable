@@ -25,7 +25,7 @@ import { useForm } from "react-hook-form";
 import { kingdoms, speciesSchema, type FormData } from "../schemas/speciesSchema";
 type Species = Database["public"]["Tables"]["species"]["Row"];
 
-export default function EditSpeciesDialog({ species, onEdit }: { species: Species, onEdit: () => void }) {
+export default function EditSpeciesDialog({ species, onEdit }: { species: Species; onEdit: () => void }) {
   const router = useRouter();
 
   // Control open/closed state of the dialog
@@ -71,8 +71,7 @@ export default function EditSpeciesDialog({ species, onEdit }: { species: Specie
         description: error.message,
         variant: "destructive",
       });
-    }
-    else {
+    } else {
       onEdit();
     }
 

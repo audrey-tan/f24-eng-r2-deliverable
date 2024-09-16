@@ -14,11 +14,11 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import type { Database } from "@/lib/schema";
 import Image from "next/image";
+import { useState } from "react";
 import AddCommentCard from "./add-comment-card";
 import CommentCard from "./comment-card";
 import DeleteSpeciesDialog from "./delete-species-dialog";
 import EditSpeciesDialog from "./edit-species-dialog";
-import { useState } from "react";
 
 interface Profile {
   display_name: string;
@@ -45,14 +45,13 @@ export default function SpeciesCard({
   sessionId: string;
   user_display_name: string;
 }) {
-
   const [open, setOpen] = useState<boolean>(false);
 
-  const isAuthor = (sessionId === species.author);
+  const isAuthor = sessionId === species.author;
 
   const closeDialog = () => {
     setOpen(false);
-  }
+  };
 
   return (
     <div className="m-4 w-72 min-w-72 flex-none rounded border-2 p-3 shadow">
@@ -73,7 +72,7 @@ export default function SpeciesCard({
           <div className="mt-5">
             {isAuthor ? (
               <div className="space-x-2">
-                <EditSpeciesDialog species={species} onEdit={closeDialog}/>
+                <EditSpeciesDialog species={species} onEdit={closeDialog} />
                 <DeleteSpeciesDialog species={species} />
               </div>
             ) : null}
