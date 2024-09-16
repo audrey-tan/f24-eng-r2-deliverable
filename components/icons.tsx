@@ -14,6 +14,7 @@ import {
   Loader2,
   Moon,
   MoreVertical,
+  Pencil,
   Pizza,
   Plus,
   Settings,
@@ -66,4 +67,5 @@ export const Icons = {
   ),
   twitter: Twitter,
   check: Check,
+  pencil: Pencil,
 };
