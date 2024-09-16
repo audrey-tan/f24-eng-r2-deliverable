@@ -218,10 +218,10 @@ export default function EditSpeciesDialog({ species }: { species: Species }) {
                     <FormItem>
                       <FormControl>
                         <div className="mb-2 mt-3 flex items-center space-x-2">
-                          <Input
+                          <input
                             type="checkbox"
                             id="end_checkbox"
-                            defaultChecked={species.endangered ?? undefined}
+                            defaultChecked={value ?? undefined}
                             {...rest}
                             className="mr-2 h-4 w-4 align-middle"
                           />
